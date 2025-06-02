@@ -5,16 +5,17 @@
  */
 package com.example.flightapi.entity;
 
-import jakarta.persistence.Entity;
-import lombok.Data;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.Column;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Data;
 
 @Data
 @Entity
@@ -58,4 +59,7 @@ public class FlightEntity {
 
     @Column(name = "AIR_TYPE_NAME", nullable = false, length = 100)
     private String airTypeName;
+
+    @Column(name = "PRICE", nullable = false, precision = 10, scale = 2)
+    private BigDecimal price;
 }

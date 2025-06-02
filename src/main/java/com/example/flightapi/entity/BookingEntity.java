@@ -38,9 +38,12 @@ public class BookingEntity {
     @Column(name = "STATUS", nullable = false, length = 20)
     private String status;
 
-    @Column(name = "BOOKING_TIME", nullable = false)
+    @Column(name = "BOOKING_TIME", nullable = false, updatable = false)
     private LocalDateTime bookingTime;
 
     @Column(name = "TOTAL_PRICE", nullable = false, precision = 10, scale = 2)
     private BigDecimal totalPrice;
+
+    @Column(name = "ORDER_NUMBER", length = 100)
+    private String orderNumber;
 }

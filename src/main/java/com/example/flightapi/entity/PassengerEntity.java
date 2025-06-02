@@ -38,4 +38,7 @@ public class PassengerEntity {
 
     @Column(name = "EMAIL", nullable = false, length = 100)
     private String email;
+
+    @Column(name = "ORDER_NUMBER", length = 100)
+    private String orderNumber;
 }

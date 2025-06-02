@@ -51,7 +51,8 @@ public class JwtValidationFilter extends OncePerRequestFilter {
 
         // Allow requests to the allowed paths
         boolean isAllowedPath = securityProperties.getAllowedPaths().stream()
-                .anyMatch(path -> request.getRequestURI().startsWith(path));
+                .anyMatch(path -> request.getRequestURI().startsWith(
+                    path != null ? path.replace("*", "") : path));
 
         // If the request is allowed, proceed with the filter chain
         if (isAllowedPath) {

@@ -23,5 +23,4 @@ security:
   allowed-paths:
     - /api/auth/login
     - /api/auth/register
-    - /api/common/
     - /api/common/**
