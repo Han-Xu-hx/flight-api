@@ -77,10 +77,10 @@ public class FlightController {
                     flightResponse.setFlightNo(flight.getFlightNumber());
                     flightResponse.setDeparture(flight.getDepartureAirportCity());
                     flightResponse.setArrival(flight.getDestinationAirportCity());
-                    flightResponse.setDate(flight.getArrivalDate());
-                    flightResponse.setTime(flight.getArrivalTime());
-                    flightResponse.setArrivalDate(flight.getDepartureDate());
-                    flightResponse.setArrivalTime(flight.getDepartureTime());
+                    flightResponse.setDate(flight.getDepartureDate());
+                    flightResponse.setTime(flight.getDepartureTime());
+                    flightResponse.setArrivalDate(flight.getArrivalDate());
+                    flightResponse.setArrivalTime(flight.getArrivalTime());
                     flightResponse.setDuration(calcDuration.apply(flight));
                     flightResponse.setPrice(flight.getPrice());
                     flightResponse.setRemainingSeats(flight.getRemaining());
