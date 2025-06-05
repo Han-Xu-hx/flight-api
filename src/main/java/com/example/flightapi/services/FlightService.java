@@ -1,3 +1,8 @@
+/**
+ * Flight Service
+ * Copyright (C) 2025
+ * Created by hanxu on 2025/06/05.
+ */
 package com.example.flightapi.services;
 
 import java.math.BigDecimal;
@@ -14,12 +19,24 @@ import com.example.flightapi.repository.FlightRepository;
 
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Flight Service
+ */
 @Service
 @RequiredArgsConstructor
 public class FlightService {
 
     private final FlightRepository flightRepository;
 
+    /**
+     * Find flights
+     * @param departureAirportCode
+     * @param destinationAirportCode
+     * @param departureDate
+     * @param cabinClass
+     * @param passengers
+     * @return
+     */
     public List<FlightSearchView> findFlights(String departureAirportCode, String destinationAirportCode, LocalDate departureDate, String cabinClass, Long passengers) {
         List<Object[]> flights = flightRepository.findFlights(departureAirportCode, destinationAirportCode, departureDate, cabinClass, passengers);
         List<FlightSearchView> flightSearchViews = new ArrayList<>();

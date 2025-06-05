@@ -8,12 +8,18 @@ package com.example.flightapi.entity;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -30,8 +36,10 @@ public class FlightEntity {
     @Column(nullable = false, name = "flight_number", length = 10)
     private String flightNumber;
 
-    @Column(nullable = false, name = "class_type_id")
-    private Long classTypeId;
+    @ManyToOne
+    @JoinColumn(nullable = false, name = "class_type_id", 
+    referencedColumnName = "type_id", foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
+    private MasterClassTypeEntity classType;
 
     @Column(nullable = false, name = "remaining")
     private Long remaining;
@@ -48,11 +56,13 @@ public class FlightEntity {
     @Column(nullable = false, name = "ARRIVAL_TIME")
     private LocalTime arrivalTime;
 
-    @Column(name = "DEPARTURE_AIRPORT_ID", nullable = false)
-    private Long departureAirportId;
+    @ManyToOne
+    @JoinColumn(name = "DEPARTURE_AIRPORT_ID", nullable = false, referencedColumnName = "airport_id", foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
+    private AirportEntity departureAirport;
 
-    @Column(name = "DESTINATION_AIRPORT_ID", nullable = false)
-    private Long destinationAirportId;
+    @ManyToOne
+    @JoinColumn(name = "DESTINATION_AIRPORT_ID", nullable = false, referencedColumnName = "airport_id", foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
+    private AirportEntity destinationAirport;
 
     @Column(name = "AIRLINE_CORP", nullable = false, length = 100)
     private String airlineCorp;
@@ -62,4 +72,7 @@ public class FlightEntity {
 
     @Column(name = "PRICE", nullable = false, precision = 10, scale = 2)
     private BigDecimal price;
+
+    @OneToMany(mappedBy = "flight")
+    private List<BookingEntity> bookings;
 }

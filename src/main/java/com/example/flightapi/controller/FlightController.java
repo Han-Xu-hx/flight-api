@@ -1,3 +1,8 @@
+/**
+ * Flight Controller
+ * Copyright (C) 2025
+ * Created by hanxu on 2025/06/04.
+ */
 package com.example.flightapi.controller;
 
 import java.time.Duration;
@@ -19,6 +24,9 @@ import com.example.flightapi.dto.FlightSearchResponse;
 import com.example.flightapi.dto.FlightSearchView;
 import com.example.flightapi.services.FlightService;
 
+/**
+ * Flight Controller
+ */
 @RestController
 @RequestMapping("/api")
 public class FlightController {
@@ -26,6 +34,11 @@ public class FlightController {
     @Autowired
     private FlightService flightService;
 
+    /**
+     * Search flights
+     * @param request
+     * @return
+     */
     @RequestMapping("/common/flights-search")
     public ResponseEntity<?> searchFlights(@RequestBody FlightSearchRequest request) {
         
@@ -52,7 +65,9 @@ public class FlightController {
                 flightResponse.setAirline(flight.getAirlineCorp());
                 flightResponse.setFlightNo(flight.getFlightNumber());
                 flightResponse.setDeparture(flight.getDepartureAirportCity());
+                flightResponse.setDepartureAirport(flight.getDepartureAirportName());
                 flightResponse.setArrival(flight.getDestinationAirportCity());
+                flightResponse.setArrivalAirport(flight.getDestinationAirportName());
                 flightResponse.setDate(flight.getDepartureDate());
                 flightResponse.setTime(flight.getDepartureTime());
                 flightResponse.setArrivalDate(flight.getArrivalDate());
@@ -76,7 +91,9 @@ public class FlightController {
                     flightResponse.setAirline(flight.getAirlineCorp());
                     flightResponse.setFlightNo(flight.getFlightNumber());
                     flightResponse.setDeparture(flight.getDepartureAirportCity());
+                    flightResponse.setDepartureAirport(flight.getDepartureAirportName());
                     flightResponse.setArrival(flight.getDestinationAirportCity());
+                    flightResponse.setArrivalAirport(flight.getDestinationAirportName());
                     flightResponse.setDate(flight.getDepartureDate());
                     flightResponse.setTime(flight.getDepartureTime());
                     flightResponse.setArrivalDate(flight.getArrivalDate());

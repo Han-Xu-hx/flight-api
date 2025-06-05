@@ -7,12 +7,20 @@ package com.example.flightapi.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -26,11 +34,13 @@ public class BookingEntity {
     @Column(name = "BOOKING_ID")
     private Long bookingId;
 
-    @Column(name = "USER_ID")
-    private Long userId;
+    @ManyToOne
+    @JoinColumn(name = "USER_ID", foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
+    private UserEntity user;
 
-    @Column(name = "FLIGHT_ID")
-    private Long flightId;
+    @ManyToOne
+    @JoinColumn(name = "FLIGHT_ID", foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
+    private FlightEntity flight;
 
     @Column(name = "REFERENCE", nullable = false, length = 20)
     private String reference;
@@ -38,12 +48,12 @@ public class BookingEntity {
     @Column(name = "STATUS", nullable = false, length = 20)
     private String status;
 
-    @Column(name = "BOOKING_TIME", nullable = false, updatable = false)
+    @Column(name = "BOOKING_TIME", nullable = false, updatable = false, insertable = false)
     private LocalDateTime bookingTime;
 
     @Column(name = "TOTAL_PRICE", nullable = false, precision = 10, scale = 2)
     private BigDecimal totalPrice;
 
-    @Column(name = "ORDER_NUMBER", length = 100)
-    private String orderNumber;
+    @OneToMany(mappedBy = "booking")
+    private List<PassengerEntity> passengers;
 }

@@ -1,3 +1,8 @@
+/**
+ * Flight Search View DTO
+ * Copyright (C) 2025
+ * Created by hanxu on 2025/06/05.
+ */
 package com.example.flightapi.dto;
 
 import java.math.BigDecimal;
@@ -6,6 +11,9 @@ import java.time.LocalTime;
 
 import lombok.Data;
 
+/**
+ * Flight Search View DTO
+ */
 @Data
 public class FlightSearchView {
     private Long flightId;

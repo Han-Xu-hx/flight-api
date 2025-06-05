@@ -5,10 +5,16 @@
  */
 package com.example.flightapi.entity;
 
-import jakarta.persistence.*;
+import java.util.List;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
 @Data
 @NoArgsConstructor
@@ -22,4 +28,7 @@ public class MasterClassTypeEntity {
 
     @Column(name = "TYPE_NAME", nullable = false, length = 30)
     private String typeName;
+
+    @OneToMany(mappedBy = "classType")
+    private List<FlightEntity> flights;
 }

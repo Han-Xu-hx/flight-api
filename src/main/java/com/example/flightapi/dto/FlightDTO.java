@@ -1,5 +1,5 @@
 /**
- * Flight Search Response DTO
+ * Flight DTO
  * Copyright (C) 2025
  * Created by hanxu on 2025/06/05.
  */
@@ -9,14 +9,17 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
- * Flight Search Response DTO
+ * Flight DTO
  */
 @Data
-public class FlightSearchResponse {
-
+@NoArgsConstructor
+@AllArgsConstructor
+public class FlightDTO {
     private Long id;
     private String airline;
     private String flightNo;

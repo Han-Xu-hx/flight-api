@@ -50,11 +50,10 @@ public class JwtUtils {
     public String generateToken(UserDetails userDetails) {
         byte[] keyBytes = Base64.getDecoder().decode(secretKey);
         return Jwts.builder()
-            .signWith(Keys.hmacShaKeyFor(keyBytes), Jwts.SIG.HS256)
             .subject(userDetails.getUsername())
             .issuedAt(new Date())
             .expiration(new Date(System.currentTimeMillis() + expirationMs))
-            .signWith(Keys.hmacShaKeyFor(secretKey.getBytes()), Jwts.SIG.HS256)
+            .signWith(Keys.hmacShaKeyFor(keyBytes), Jwts.SIG.HS256)
             .compact();
     }
 
@@ -80,14 +79,14 @@ public class JwtUtils {
      */
     public boolean validateToken(String token) {
         try {
-
+            byte[] keyBytes = Base64.getDecoder().decode(secretKey);
             Jwts.parser()
-                .verifyWith(Keys.hmacShaKeyFor(secretKey.getBytes()))
+                .verifyWith(Keys.hmacShaKeyFor(keyBytes))
                 .build()
                 .parseSignedClaims(token);
-            
             return true;
         } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
     }
