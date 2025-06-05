@@ -40,11 +40,9 @@ public class BookingController {
         Map.Entry<Boolean, String> result = bookingService.createBooking(flightBookingRequest);
         
         if (result.getKey()) {
-            System.out.println("Booking created successfully");
             return ResponseEntity.ok()
                 .body(BaseResponse.success());
         } else {
-            System.out.println("Booking creation failed");
                 return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
                     .body(BaseResponse.error(

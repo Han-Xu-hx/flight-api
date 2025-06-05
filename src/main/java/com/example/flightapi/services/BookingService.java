@@ -54,7 +54,6 @@ public class BookingService {
         int numOfPassengers = request.getPassengers().size();
         FlightEntity f = flightRepository.findById(request.getBooking().getId()).get();
         long remainingSeats = f.getRemaining() - numOfPassengers;
-        System.err.println("Remaining seats: " + remainingSeats);
         if (remainingSeats < 0) {
             return Map.entry(false, "Not enough seats");
         }
