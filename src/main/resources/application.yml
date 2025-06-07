@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: flight-api
+  datasource:
+    url: jdbc:mysql://localhost:3306/flight_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+server:
+  port: 8080
+
+jwt:
+  secret-key: "xBbYzkUAF4NrO5BXJEqo/McVbZo0jbjdcW/CSmaDoL4="
+  expiration-ms: 7200000
+
+security:
+  allowed-paths:
+    - /api/auth/login
+    - /api/auth/register
+    - /api/common/**
